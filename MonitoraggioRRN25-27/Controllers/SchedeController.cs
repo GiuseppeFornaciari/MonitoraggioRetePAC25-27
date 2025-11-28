@@ -14,11 +14,11 @@ namespace MonitoraggioPAC25_27.Controllers
 {
     public class SchedeController : Controller
     {
-        private readonly MonitoraggioRRN2527Context _context;
+        private readonly MonitoraggioPAC2527Context _context;
         private readonly RoleService _roleService;
         private readonly AllegatiService _allegatiService; // o IAllegatiService se esiste l'interfaccia
 
-        public SchedeController(MonitoraggioRRN2527Context context, RoleService roleService, AllegatiService allegatiService)
+        public SchedeController(MonitoraggioPAC2527Context context, RoleService roleService, AllegatiService allegatiService)
         {
             _context = context;
             _roleService = roleService;
@@ -332,7 +332,7 @@ namespace MonitoraggioPAC25_27.Controllers
                     OutputRealizzato = s.OutputRealizzato,
                     //OutputAllegato = s.OutputAllegato,
                     OutputAllegato = s.idOutput.HasValue &&
-                    allegatiDict.TryGetValue(s.idOutput.Value, out var files) && files != null
+                        allegatiDict.TryGetValue(s.idOutput.Value, out var files) && files != null
                         ? string.Join(", ", files)
     :                     string.Empty,
                     OutputLink = s.OutputLink,

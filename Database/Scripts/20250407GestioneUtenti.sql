@@ -19,17 +19,17 @@ WHERE Email like '%ferrari%'
 
 
 ---- 1 REFERENTI MINISTERO
---INSERT INTO [MonitoraggioRRN25-27].[dbo].[UtentiRuoli] (IdUtente, IdAspNetRoles)
+--INSERT INTO [MonitoraggioPAC25-27-27].[dbo].[UtentiRuoli] (IdUtente, IdAspNetRoles)
 --SELECT U.idUtente
 --,(SELECT id FROM  AspNetRoles WHERE Name='referente ministero')
---FROM [MonitoraggioRRN25-27].[dbo].[Utenti] U
+--FROM [MonitoraggioPAC25-27-27].[dbo].[Utenti] U
 --INNER JOIN [MonitoraggioRRN].[dbo].[ReferentiMIPAAF] UOLD ON U.EMail=UOLD.Email
 
 ---- 2 RESPONSABILI
---INSERT INTO [MonitoraggioRRN25-27].[dbo].[UtentiRuoli] (IdUtente, IdAspNetRoles)
+--INSERT INTO [MonitoraggioPAC25-27-27].[dbo].[UtentiRuoli] (IdUtente, IdAspNetRoles)
 --SELECT U.idUtente
 --,(SELECT id FROM  AspNetRoles WHERE Name='responsabile scheda')
---FROM [MonitoraggioRRN25-27].[dbo].[Utenti] U
+--FROM [MonitoraggioPAC25-27-27].[dbo].[Utenti] U
 --INNER JOIN [MonitoraggioRRN].[dbo].[ResponsabiliScheda] UOLD ON U.EMail=UOLD.Email
 
 --- SEGRETARIATO
@@ -102,4 +102,12 @@ WHERE U.Email IN ('c.macri@politicheagricole.it','laura.panico@masaf.gov.it')
 
 --UPDATE aspNetUserRoles SET RoleId=4 WHERE UserId='1c2de1fb-f0bc-495f-b78f-c6673e2b8244'
 --UPDATE aspNetUserRoles SET RoleId=4 WHERE UserId='442184e1-5f04-487b-bfae-fc32dbb362e2'
+
+
+
+----- 20251125 Aggiunta utenti
+---a.ripepi@ismea.it
+---DELETE FROM AspNetUsers WHERE username like '%ripepi%'
+SELECT * FROM AspNetUsers WHERE username like '%ripepi%'
+UPDATE AspNetUsers Set EmailConfirmed=1 WHERE username like '%ripepi%'
 

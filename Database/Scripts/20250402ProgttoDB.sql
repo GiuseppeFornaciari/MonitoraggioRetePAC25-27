@@ -1,4 +1,4 @@
-USE [MonitoraggioRRN25-27]
+USE [MonitoraggioPAC25-27]
 GO
 
 --CREATE TABLE [dbo].[Schede](
@@ -57,7 +57,7 @@ GO
 
 
 
---INSERT INTO [MonitoraggioRRN25-27].[dbo].[AspNetUsers] ([Id]
+--INSERT INTO [MonitoraggioPAC25-27].[dbo].[AspNetUsers] ([Id]
 --      ,[UserName]
 --      ,[NormalizedUserName]
 --      ,[Email]
@@ -88,7 +88,7 @@ GO
 --      ,[LockoutEndDateUtc] as LockoutEnd
 --      ,[LockoutEnabled]
 --      ,[AccessFailedCount]
---  FROM [MonitoraggioRRN].[dbo].[AspNetUsers]
+--  FROM [MonitoraggioPAC].[dbo].[AspNetUsers]
 
 
 

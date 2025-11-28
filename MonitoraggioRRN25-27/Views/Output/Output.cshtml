@@ -103,7 +103,32 @@
                             <span asp-validation-for="OutputLink" class="text-danger"></span>
                         </div>
                     </div>
-
+                    @if (1 == 1)
+                    {
+                        if (isResponsabileMinistero)
+                        {
+                            <div class="form-group row mb-3">
+                                <label class="col-sm-2 label-highlight">Allegati caricati</label>
+                                <div class="col-sm-10">
+                                    @if (ViewData["AllegatiOutput"] is IEnumerable<string> allegati && allegati.Any())
+                                    {
+                                        <ul class="list-group">
+                                            @foreach (var file in allegati)
+                                            {
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <a href="~/Uploads/Outputs/@Model.IdOutput/@file" target="_blank">@file</a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <p class="text-muted">Nessun file caricato.</p>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
                     <div class="form-group row mb-3 @(isResponsabileMinistero ? "d-none" : "")" style="margin-top: -25px;">
                         <label asp-for="OutputAllegato" class="col-sm-2 label-highlight" style="margin-top: 25px;"></label>
                         <div class="col-sm-10">

@@ -13,11 +13,11 @@ namespace MonitoraggioPAC25_27.Controllers
 {
     public class ProgettiController : Controller
     {
-        private readonly MonitoraggioRRN2527Context _context;
+        private readonly MonitoraggioPAC2527Context _context;
         private readonly RoleService _roleService;
         private readonly AllegatiService _allegatiService;
 
-        public ProgettiController(MonitoraggioRRN2527Context context, RoleService roleService, AllegatiService allegatiService)
+        public ProgettiController(MonitoraggioPAC2527Context context, RoleService roleService, AllegatiService allegatiService)
         {
             _context = context;
             _roleService = roleService;

@@ -73,7 +73,10 @@
     <None Include="Scripts\20250915CorrezioniCaricamentoDati.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Scripts\20251031GestioneUtentiElencoDefinitivo.sql" />
-    <Build Include="Scripts\20251111DatiCrea.sql" />
+    <None Include="Scripts\20251031GestioneUtentiElencoDefinitivo.sql" />
+    <None Include="Scripts\20251111DatiCrea.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\20251127PuliziaDBSart.sql" />
   </ItemGroup>
 </Project>

@@ -14,13 +14,13 @@ namespace MonitoraggioPAC25_27.Controllers
 {
     public class OutputController : Controller
     {
-        private readonly MonitoraggioRRN2527Context _context;
+        private readonly MonitoraggioPAC2527Context _context;
         private readonly RoleService _roleService;
         private readonly IWebHostEnvironment _environment;
         private readonly string _basePath;
         private readonly AllegatiService _allegatiService;
 
-        public OutputController(MonitoraggioRRN2527Context context, RoleService roleService, IWebHostEnvironment environment, IConfiguration configuration, AllegatiService allegatiService)
+        public OutputController(MonitoraggioPAC2527Context context, RoleService roleService, IWebHostEnvironment environment, IConfiguration configuration, AllegatiService allegatiService)
         {
             _context = context;
             _roleService = roleService;
@@ -93,6 +93,11 @@ namespace MonitoraggioPAC25_27.Controllers
             ViewData["Monitoraggio"] = "20250630";
             ViewData["CodTema"] = new SelectList(_context.Temis, "CodTema", "Tema", o.CodTema);
             ViewData["CodTipoOutput"] = new SelectList(_context.TipiOutputs, "CodTipoOutput", "TipoOutput", o.CodTipoOutput);
+
+            // 🔹 Recupera gli allegati per questo output tramite AllegatiService
+            var allegatiOutput = _allegatiService.GetFileList(o) ?? new List<string>();
+            ViewData["AllegatiOutput"] = allegatiOutput;
+
             return View(o);
         }
 

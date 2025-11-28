@@ -12,9 +12,9 @@ namespace MonitoraggioPAC25_27
 {
     public class IndexModel : PageModel
     {
-        private readonly MonitoraggioPAC25_27.Data.MonitoraggioRRN2527Context _context;
+        private readonly MonitoraggioPAC25_27.Data.MonitoraggioPAC2527Context _context;
 
-        public IndexModel(MonitoraggioPAC25_27.Data.MonitoraggioRRN2527Context context)
+        public IndexModel(MonitoraggioPAC25_27.Data.MonitoraggioPAC2527Context context)
         {
             _context = context;
         }

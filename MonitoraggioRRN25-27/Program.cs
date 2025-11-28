@@ -1,9 +1,12 @@
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using MonitoraggioPAC25_27.Data;
+using MonitoraggioPAC25_27.Models;
 using MonitoraggioPAC25_27.Services;
 using MonitoraggioPAC25_27.Utilities;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,14 +15,15 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
     throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
-builder.Services.AddDbContext<MonitoraggioRRN2527Context>(options =>
+builder.Services.AddDbContext<MonitoraggioPAC2527Context>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.Configure<PercorsiAllegatiOptions>(
     builder.Configuration.GetSection("PercorsiAllegati"));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => 
+        options.SignIn.RequireConfirmedAccount = true) 
     .AddRoles<IdentityRole>()  // Aggiunto supporto per i ruoli
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
@@ -33,6 +37,9 @@ builder.Services.AddScoped<AllegatiUtility>();
 builder.Services.AddScoped<UtenteService>();
 // servizio per gestire gli allegati
 builder.Services.AddScoped<AllegatiService>();
+//EMAIL
+builder.Services.AddTransient<IEmailSender, SmtpEmailSender>();
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("Smtp"));
 
 var app = builder.Build();
 
@@ -59,7 +66,7 @@ else
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
+app.UseAuthentication();   // ← OBBLIGATORIO prima dell'autorizzazione
 app.UseAuthorization();
 
 app.MapStaticAssets();

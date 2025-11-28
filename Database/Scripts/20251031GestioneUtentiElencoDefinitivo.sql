@@ -3,39 +3,39 @@
 -------------------------
 --SELECT *
 --INTO UtentiBK20251031
---FROM [MonitoraggioRRN25-27].[dbo].[Utenti]
+--FROM [MonitoraggioPAC25-27-27].[dbo].[Utenti]
 --SELECT *
 --INTO UtentiProgettoEnteBK20251031
---FROM [MonitoraggioRRN25-27].[dbo].[UtentiProgettoEnte]
+--FROM [MonitoraggioPAC25-27-27].[dbo].[UtentiProgettoEnte]
 --SELECT *
 --INTO UtentiProgettoMinisteroBK20251031
---FROM [MonitoraggioRRN25-27].[dbo].[UtentiProgettoMinistero]
+--FROM [MonitoraggioPAC25-27-27].[dbo].[UtentiProgettoMinistero]
 --SELECT *
 --INTO UtentiRuoliBK20251031
---FROM [MonitoraggioRRN25-27].[dbo].[UtentiRuoli]
+--FROM [MonitoraggioPAC25-27-27].[dbo].[UtentiRuoli]
 --SELECT *
 --INTO UtentiSchedaEnteBK20251031
---FROM [MonitoraggioRRN25-27].[dbo].[UtentiSchedaEnte]
+--FROM [MonitoraggioPAC25-27-27].[dbo].[UtentiSchedaEnte]
 
 -------------------------
 --- 2 Cancellazione tabelle e reseed indici
 -------------------------
---DELETE FROM [MonitoraggioRRN25-27].[dbo].[UtentiSchedaEnte]
---DELETE FROM [MonitoraggioRRN25-27].[dbo].[UtentiRuoli]
---DELETE FROM [MonitoraggioRRN25-27].[dbo].UtentiProgettoMinistero
---DELETE FROM [MonitoraggioRRN25-27].[dbo].UtentiProgettoEnte
---DELETE FROM [MonitoraggioRRN25-27].[dbo].[Utenti] 
+--DELETE FROM [MonitoraggioPAC25-27].[dbo].[UtentiSchedaEnte]
+--DELETE FROM [MonitoraggioPAC25-27].[dbo].[UtentiRuoli]
+--DELETE FROM [MonitoraggioPAC25-27].[dbo].UtentiProgettoMinistero
+--DELETE FROM [MonitoraggioPAC25-27].[dbo].UtentiProgettoEnte
+--DELETE FROM [MonitoraggioPAC25-27].[dbo].[Utenti] 
 
 
 --SELECT *
 --INTO AspNetUserRolesBK20251031
---FROM [MonitoraggioRRN25-27].[dbo].[AspNetUserRoles]
+--FROM [MonitoraggioPAC25-27].[dbo].[AspNetUserRoles]
 
 -------------------------
 --- 2.1 MANTENGO ACCOUNT necessari NON IN ELENCO 
 -------------------------
---DELETE FROM  [MonitoraggioRRN25-27].[dbo].[AspNetUserRoles]
---FROM [MonitoraggioRRN25-27].[dbo].[AspNetUserRoles] UR INNER JOIN [MonitoraggioRRN25-27].[dbo].[AspNetUsers] U ON UR.UserId=U.Id
+--DELETE FROM  [MonitoraggioPAC25-27].[dbo].[AspNetUserRoles]
+--FROM [MonitoraggioPAC25-27].[dbo].[AspNetUserRoles] UR INNER JOIN [MonitoraggioPAC25-27].[dbo].[AspNetUsers] U ON UR.UserId=U.Id
 --WHERE userName NOT IN
 --(
 -- 'segretariato@CREA.it'
@@ -47,9 +47,9 @@
 
 --SELECT *
 --INTO AspNetUsersBK20251031
---FROM [MonitoraggioRRN25-27].[dbo].[AspNetUsers]
+--FROM [MonitoraggioPAC25-27].[dbo].[AspNetUsers]
 
---DELETE [MonitoraggioRRN25-27].[dbo].[AspNetUsers]
+--DELETE [MonitoraggioPAC25-27].[dbo].[AspNetUsers]
 --WHERE userName NOT IN
 --(
 -- 'segretariato@CREA.it'
@@ -73,7 +73,7 @@
 
 ----4 Assegno ruolo RESPONSABILI DI progetto (3)
 --INSERT INTO AspNetUserRoles
---SELECT id,3 FROM [MonitoraggioRRN25-27].[dbo].[AspNetUsers]
+--SELECT id,3 FROM [MonitoraggioPAC25-27].[dbo].[AspNetUsers]
 --WHERE id NOT IN --- GIA ASSEGNATI
 --(
 -- '65aae332-0a9e-48d8-9d69-8061868a6428' ---	1
@@ -93,7 +93,7 @@
 
 ----5 Assegno ruolo RESPONSABILI DI scheda (2)
 --INSERT INTO AspNetUserRoles
---SELECT id,2 FROM [MonitoraggioRRN25-27].[dbo].[AspNetUsers]
+--SELECT id,2 FROM [MonitoraggioPAC25-27].[dbo].[AspNetUsers]
 --WHERE id NOT IN --- GIA ASSEGNATI
 --(
 -- '65aae332-0a9e-48d8-9d69-8061868a6428' ---	1
@@ -203,7 +203,7 @@
 
 ----6 Assegno ruolo RESPONSABILI mINISTERO (4)
 --INSERT INTO AspNetUserRoles
---SELECT id,4 FROM [MonitoraggioRRN25-27].[dbo].[AspNetUsers]
+--SELECT id,4 FROM [MonitoraggioPAC25-27].[dbo].[AspNetUsers]
 --WHERE id NOT IN --- GIA ASSEGNATI
 --(
 -- '65aae332-0a9e-48d8-9d69-8061868a6428' ---	1
@@ -263,7 +263,7 @@
 --SELECT [Email]
 --      ,[UserName] as Utente
 --      ,Id
---  FROM [MonitoraggioRRN25-27].[dbo].[AspNetUsers]
+--  FROM [MonitoraggioPAC25-27].[dbo].[AspNetUsers]
 --UPDATE Utenti SET Utente='Antonio Denaro' WHERE Email='a.denaro@ismea.it'
 --UPDATE Utenti SET Utente='Anna Maria Di Ciolla' WHERE Email='a.diciolla@masaf.gov.it'
 --UPDATE Utenti SET Utente='Antonio Frattarelli' WHERE Email='a.frattarelli@masaf.gov.it'
@@ -530,4 +530,25 @@ INNER JOIN Progetti P ON UPM.idProgetto=P.idProgetto
 
 
 ------
-SELECT * FROM Utenti
+----- 20251125 Aggiunta utenti
+--- 1 DA APPLICATIVO
+---a.ripepi@ismea.it
+---DELETE FROM AspNetUsers WHERE username like '%ripepi%'
+SELECT * FROM AspNetUsers WHERE username like '%ripepi%'
+---UPDATE AspNetUsers Set EmailConfirmed=1 WHERE username like '%ripepi%'
+--- 2 DB utente
+SELECT * FROM Utenti WHERE Utente like '%ripepi%'
+---INSERT INTO Utenti (email,utente,idAspNetUser) VALUES ('a.ripepi@ismea.it','Antonia Ripepi','99fff664-0b71-40ea-8813-f32e7be02385')
+--- 2 DB ruolo
+SELECT *
+  FROM [AspNetUserRoles] UR
+  ---INNER JOIN AspNetRoles R ON UR.RoleId=R.Id  
+  WHERE UserId='99fff664-0b71-40ea-8813-f32e7be02385'
+---INSERT INTO [AspNetUserRoles] (UserId,RoleId) VALUES ('99fff664-0b71-40ea-8813-f32e7be02385',3)
+---UPDATE [AspNetUserRoles] SET RoleId=4  WHERE UserId='99fff664-0b71-40ea-8813-f32e7be02385'
+
+--- 3 MINISTERO
+--INSERT INTO [UtentiProgettoMinistero] ([idProgetto],[idUtente]) VALUES ((SELECT idProgetto FROM Progetti WHERE CodProgetto='IS01.10'),(SELECT idUtente FROM Utenti WHERE Utente ='Antonia Ripepi'))
+--INSERT INTO [UtentiProgettoMinistero] ([idProgetto],[idUtente]) VALUES ((SELECT idProgetto FROM Progetti WHERE CodProgetto='IS03.01'),(SELECT idUtente FROM Utenti WHERE Utente ='Antonia Ripepi'))
+SELECT * FROM UtentiProgettoMinistero WHERE idUtente=(SELECT idUtente FROM Utenti WHERE Utente ='Antonia Ripepi')
+

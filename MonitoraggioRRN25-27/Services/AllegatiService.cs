@@ -10,10 +10,10 @@ namespace MonitoraggioPAC25_27.Services
     public class AllegatiService
     {
         private readonly IWebHostEnvironment _env;
-        private readonly MonitoraggioRRN2527Context _context;
+        private readonly MonitoraggioPAC2527Context _context;
         private readonly string _basePath;
 
-        public AllegatiService(IWebHostEnvironment env, MonitoraggioRRN2527Context context)
+        public AllegatiService(IWebHostEnvironment env, MonitoraggioPAC2527Context context)
         {
             _env = env;
             _context = context;
