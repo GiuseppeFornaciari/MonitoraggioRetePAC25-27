@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,6 +41,10 @@ builder.Services.AddScoped<AllegatiService>();
 //EMAIL
 builder.Services.AddTransient<IEmailSender, SmtpEmailSender>();
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("Smtp"));
+//Protection key
+builder.Services.AddDataProtection()
+    .PersistKeysToDbContext<ApplicationDbContext>()
+    .SetApplicationName("MonitoraggioRetePAC25-27");
 
 var app = builder.Build();
 
