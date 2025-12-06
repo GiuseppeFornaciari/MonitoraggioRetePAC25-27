@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using System;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -17,12 +18,16 @@ namespace MonitoraggioRetePAC25_27.Utilities
                 return "?.?.?";
 
             // Rimuove tutto dopo '+' e dopo '-'
-            var clean = version.Split('+')[0];
-            var dashIndex = clean.IndexOf('-');
-            if (dashIndex >= 0)
-                clean = clean.Substring(0, dashIndex);
+            //var clean = version.Split('+')[0];
+            //var dashIndex = clean.IndexOf('-');
+            //if (dashIndex >= 0)
+            //    clean = clean.Substring(0, dashIndex);
+            //
+            //return clean;
 
-            return clean;
+            return version.Split('+')[0];
+
+            
         }
 
         public static string GetWithCommitDate()

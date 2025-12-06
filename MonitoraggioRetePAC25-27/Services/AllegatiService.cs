@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using MonitoraggioRetePAC25_27.Data;
 using MonitoraggioRetePAC25_27.Models;
-using System.IO;
-using System.Linq;
+using MonitoraggioRetePAC25_27.Utilities;
 
 namespace MonitoraggioRetePAC25_27.Services
 {
@@ -13,11 +12,22 @@ namespace MonitoraggioRetePAC25_27.Services
         private readonly MonitoraggioRetePAC2527Context _context;
         private readonly string _basePath;
 
-        public AllegatiService(IWebHostEnvironment env, MonitoraggioRetePAC2527Context context)
+        public AllegatiService(
+                  IWebHostEnvironment env,
+                  MonitoraggioRetePAC2527Context context,
+                  IOptions<PercorsiAllegatiOptions> allegatiOptions)
         {
             _env = env;
             _context = context;
-            _basePath = Path.Combine(_env.WebRootPath, "allegati");
+
+            var configuredBasePath = string.IsNullOrWhiteSpace(allegatiOptions.Value.BasePath)
+                ? "Uploads"
+                : allegatiOptions.Value.BasePath;
+            _basePath = Path.IsPathRooted(configuredBasePath)
+                ? configuredBasePath
+                : Path.Combine(_env.ContentRootPath, configuredBasePath);
+
+            Directory.CreateDirectory(_basePath);
         }
 
         private string GetAllegatiPath(Output output, bool ensureExists = true)

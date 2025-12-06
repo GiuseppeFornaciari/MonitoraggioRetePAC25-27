@@ -116,7 +116,7 @@
                                             @foreach (var file in allegati)
                                             {
                                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <a href="~/Uploads/Outputs/@Model.IdOutput/@file" target="_blank">@file</a>
+                                                    <a href="@Url.Action("DownloadAllegato", "Output", new { idOutput = Model.IdOutput, fileName = file })" target="_blank">@file</a>
                                                 </li>
                                             }
                                         </ul>
